@@ -14,7 +14,7 @@ public class Numbers {
     private static final List<Integer> boogeyNumbers = Arrays.asList(189, 162, 163, 165, 166, 168, 169);
     private static Set<Integer> possibleOneDartScores = new HashSet<>();
     private static Set<Integer> possibleThreeDartScores = new HashSet<>();
-    private static Set<DartRound> possibleThreeDartCombinations = new HashSet<>();
+    private static List<DartRound> possibleThreeDartCombinations = new ArrayList<>();
     private static Set<Integer> possibleDoubleFinishes = new HashSet<>();
 
     /**
@@ -88,7 +88,7 @@ public class Numbers {
      *
      * @return all combinations of possible scores
      */
-    public static Set<DartRound> getPossibleThreeDartCombinations() {
+    public static List<DartRound> getPossibleThreeDartCombinations() {
         if(possibleThreeDartCombinations.isEmpty()) {
             for (int s1 : getPossibleOneDartScores()) {
                 for (int s2 : getPossibleOneDartScores()) {
@@ -98,6 +98,8 @@ public class Numbers {
                 }
             }
         }
+        // Shuffle the list to get different throws.
+        Collections.shuffle(possibleThreeDartCombinations);
         return possibleThreeDartCombinations;
     }
 }
